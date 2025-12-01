@@ -2,7 +2,6 @@ package com.authMicroservice.Autenticacao_Usuario.DTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -25,11 +24,9 @@ public class UsuarioRequestDTO {
     private String email;
 
     @NotBlank(message = "Telefone é obrigatório")
-    @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}", message = "Telefone deve ter formato (XX) XXXXX-XXXX")
     private String telefone;
 
     @NotBlank(message = "CPF é obrigatório")
-    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "CPF deve ter formato XXX.XXX.XXX-XX")
     private String cpf;
 
     @NotBlank(message = "Senha é obrigatória")
