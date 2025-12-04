@@ -1,23 +1,27 @@
 # Projeto Microservices - To-Do List
 
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/LuisHRodrigues/Microservices-To_Do_List)
+
 Este projeto implementa uma arquitetura completa de microservices para gerenciamento de listas de tarefas, com autenticação de usuários e interface web moderna.
 
 ## 🏗️ Arquitetura
 
 - **API de Autenticação** (Spring Boot - Porta 8080)
-- **API de To-Do List** (Spring Boot - Porta 8081)  
+- **API de To-Do List** (Spring Boot - Porta 8081)
 - **Frontend React** (Porta 3000)
 - **Banco MySQL** (Porta 3306)
 
 ## ✨ Funcionalidades
 
 ### 🔐 Sistema de Autenticação
+
 - **Cadastro de usuários** com validação de dados (nome, email, telefone, CPF, senha)
 - **Login seguro** com autenticação por token
 - **Gerenciamento de sessão** com persistência local
 - **Logout** com limpeza de dados de sessão
 
 ### 📝 Gerenciamento de To-Do Lists
+
 - **Criar múltiplas listas** de tarefas por usuário
 - **Adicionar tarefas** em listas específicas
 - **Remover tarefas** individualmente
@@ -26,6 +30,7 @@ Este projeto implementa uma arquitetura completa de microservices para gerenciam
 - **Persistência de dados** no banco MySQL
 
 ### 🎨 Interface do Usuário
+
 - **Design responsivo** com Tailwind CSS
 - **Navegação intuitiva** entre login/cadastro
 - **Feedback visual** para ações do usuário
@@ -34,12 +39,26 @@ Este projeto implementa uma arquitetura completa de microservices para gerenciam
 
 ## 🚀 Como executar
 
+### Pré-requisitos
+
+- Docker e Docker Compose instalados
+- Git para clonar o repositório
+
+### Clonando o repositório
+
+```bash
+git clone https://github.com/LuisHRodrigues/Microservices-To_Do_List.git
+cd Microservices-To_Do_List
+```
+
 ### Opção 1: Script automático (Windows)
+
 ```bash
 ./start-microservices.bat
 ```
 
 ### Opção 2: Docker Compose manual
+
 ```bash
 # Parar containers existentes
 docker-compose down
@@ -51,6 +70,7 @@ docker-compose up --build
 ## 📡 Endpoints da API
 
 ### API de Autenticação (http://localhost:8080)
+
 - `POST /usuarios` - Criar novo usuário
   ```json
   {
@@ -71,6 +91,7 @@ docker-compose up --build
 - `GET /usuarios` - Status da API
 
 ### API de To-Do List (http://localhost:8081)
+
 - `GET /api/todo-lists` - Listar todas as listas
 - `GET /api/todo-lists/usuario/{usuarioId}` - Listar listas por usuário
 - `POST /api/todo-lists` - Criar nova lista
@@ -86,52 +107,69 @@ docker-compose up --build
 - `DELETE /api/todo-lists/{id}` - Deletar lista
 
 ### Frontend React (http://localhost:3000)
+
 - **Página de Login/Cadastro** - Autenticação de usuários
 - **Dashboard Principal** - Gerenciamento de listas e tarefas
 - **Navegação Responsiva** - Interface adaptável
 
 ## 📁 Estrutura do projeto
+
 ```
 Microservices/
 ├── Autenticacao_Usuario/          # 🔐 API de Autenticação (Spring Boot)
-│   └── src/main/java/
-│       ├── Controller/             # Controladores REST
-│       ├── Service/                # Lógica de negócio
-│       ├── Model/                  # Entidades JPA
-│       ├── Repository/             # Acesso a dados
-│       └── DTO/                    # Objetos de transferência
+│   └── Autenticacao_Usuario/
+│       ├── src/main/java/
+│       │   ├── Controller/         # Controladores REST
+│       │   ├── Service/            # Lógica de negócio
+│       │   ├── Model/              # Entidades JPA
+│       │   ├── Repository/         # Acesso a dados
+│       │   └── DTO/                # Objetos de transferência
+│       ├── Dockerfile
+│       └── pom.xml
 ├── To_Do_List_Usuario/            # 📝 API de To-Do List (Spring Boot)
-│   └── src/main/java/
-│       ├── Controller/             # Controladores REST
-│       ├── Service/                # Lógica de negócio
-│       ├── Model/                  # Entidades JPA
-│       ├── Repository/             # Acesso a dados
-│       └── DTO/                    # Objetos de transferência
+│   └── To_Do_List_Usuario/
+│       ├── src/main/java/
+│       │   ├── Controller/         # Controladores REST
+│       │   ├── Service/            # Lógica de negócio
+│       │   ├── Model/              # Entidades JPA
+│       │   ├── Repository/         # Acesso a dados
+│       │   └── DTO/                # Objetos de transferência
+│       ├── Dockerfile
+│       └── pom.xml
 ├── React_ToDoList/                # 🎨 Frontend React
-│   └── src/
-│       ├── components/             # Componentes React
-│       ├── context/                # Context API (Auth)
-│       └── services/               # Serviços de API
+│   └── to_do_list-app/
+│       ├── src/
+│       │   ├── components/         # Componentes React
+│       │   ├── context/            # Context API (Auth)
+│       │   └── services/           # Serviços de API
+│       ├── public/                 # Arquivos públicos
+│       ├── Dockerfile
+│       ├── package.json
+│       └── tailwind.config.js
 ├── docker-compose.yml             # 🐳 Orquestração dos serviços
 ├── init-db.sql                    # 🗄️ Script de inicialização do BD
-└── start-microservices.bat        # 🚀 Script de inicialização
+├── start-microservices.bat        # 🚀 Script de inicialização
+└── README.md                      # 📖 Documentação do projeto
 ```
 
 ## ⚙️ Tecnologias utilizadas
 
 ### Backend
+
 - **Spring Boot** - Framework Java para APIs REST
 - **Spring Data JPA** - Persistência de dados
 - **MySQL** - Banco de dados relacional
 - **Maven** - Gerenciamento de dependências
 
 ### Frontend
+
 - **React** - Biblioteca JavaScript para UI
 - **Tailwind CSS** - Framework CSS utilitário
 - **Context API** - Gerenciamento de estado
 - **Fetch API** - Comunicação com APIs
 
 ### DevOps
+
 - **Docker** - Containerização
 - **Docker Compose** - Orquestração de containers
 
@@ -162,12 +200,14 @@ Microservices/
 ## 🤝 Contribuição
 
 Para contribuir com o projeto:
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
-5. Abra um Pull Request
 
-## 📄 Licença
+1. Faça um fork do repositório no [GitHub](https://github.com/LuisHRodrigues/Microservices-To_Do_List)
+2. Clone seu fork: `git clone https://github.com/SEU_USUARIO/Microservices-To_Do_List.git`
+3. Crie uma branch para sua feature: `git checkout -b minha-feature`
+4. Commit suas mudanças: `git commit -m 'Adiciona nova feature'`
+5. Push para a branch: `git push origin minha-feature`
+6. Abra um Pull Request
 
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+## 🐛 Reportar Issues
+
+Encontrou um bug ou tem uma sugestão? [Abra uma issue](https://github.com/LuisHRodrigues/Microservices-To_Do_List/issues) no GitHub.
