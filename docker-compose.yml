@@ -69,8 +69,10 @@ services:
       dockerfile: Dockerfile
     container_name: react-frontend
     environment:
-    REACT_APP_API_BASE_URL: http://192.168.0.110/todo
-    REACT_APP_AUTH_API_URL: http://192.168.0.110/auth
+      # URL para a API de To-Do (passando pelo Nginx)
+      REACT_APP_API_BASE_URL: https://bonded-unforgivingly-rochell.ngrok-free.dev/todo
+      # URL para a API de Autenticação (passando pelo Nginx)
+      REACT_APP_AUTH_API_URL: https://bonded-unforgivingly-rochell.ngrok-free.dev/auth
     depends_on:
       - auth-api
       - todo-api
