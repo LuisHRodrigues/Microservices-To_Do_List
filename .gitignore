@@ -1,0 +1,7 @@
+# Ignorar dados do banco de dados (Volume do Docker)
+mysql_data/
+
+# Ignorar arquivos de sistema e IDE
+.vscode/
+.idea/
+*.swp
