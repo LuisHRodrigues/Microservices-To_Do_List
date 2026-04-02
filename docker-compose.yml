@@ -3,14 +3,14 @@ services:
   nginx-proxy:
     image: nginx:latest
     ports: 
-      - "80:80"
+      - "8080:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx.d/default.conf:ro
     depends_on:
       - mysql
       - auth-api
       - todo-api
-      - frontend
+      - react-frontend
   # Banco de dados MySQL
   mysql:
     image: mysql:8.0
@@ -63,16 +63,14 @@ services:
       - microservices-network
 
   # Frontend React
-  frontend:
+  react-frontend:
     build:
       context: ./React_ToDoList/to_do_list-app
       dockerfile: Dockerfile
-    container_name: react-frontend
-    environment:
-      # URL para a API de To-Do (passando pelo Nginx)
-      REACT_APP_API_BASE_URL: https://bonded-unforgivingly-rochell.ngrok-free.dev/todo
-      # URL para a API de Autenticação (passando pelo Nginx)
-      REACT_APP_AUTH_API_URL: https://bonded-unforgivingly-rochell.ngrok-free.dev/auth
+      container_name: react-frontend
+      args:
+      - REACT_APP_API_BASE_URL: https://bonded-unforgivingly-rochell.ngrok-free.dev/todo
+      - REACT_APP_AUTH_API_URL: https://bonded-unforgivingly-rochell.ngrok-free.dev/auth
     depends_on:
       - auth-api
       - todo-api
